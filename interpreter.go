@@ -24,15 +24,11 @@ func newInterpreter(root AstNode, identifierMap map[string]string) *interpreter 
 		Root:          root,
 		IdentifierMap: identifierMap,
 	}
-	astNode_ := astSinNode{}
-	unNode := astUnNode{}
-	binNode := astBinNode{}
-	generalNode := astGeneralNode{}
 	i.visitMap = map[string]func(node AstNode) (*decimal.Decimal, error){
-		astNode_.GetName():    i.visitAstSinNode,
-		unNode.GetName():      i.visitAstUnNode,
-		binNode.GetName():     i.visitAstBinNode,
-		generalNode.GetName(): i.visitAstGeneralNode,
+		astSinNodeName:     i.visitAstSinNode,
+		astUnNodeName:      i.visitAstUnNode,
+		astBinNodeName:     i.visitAstBinNode,
+		astGeneralNodeName: i.visitAstGeneralNode,
 	}
 	i.unVisMap = map[TT]func(p *decimal.Decimal) (*decimal.Decimal, error){
 		TTPlus:  unPlus,

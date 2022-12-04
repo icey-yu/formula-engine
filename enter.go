@@ -11,5 +11,6 @@ func GetAstTreeByString(str string) (AstNode, error) {
 }
 
 func CalByAstTree(node AstNode, identifierMap map[string]string) (*decimal.Decimal, error) {
-	return newInterpreter(node, identifierMap).Interpret()
+	cNode := DeepCopyAstNode(node)
+	return newInterpreter(cNode, identifierMap).Interpret()
 }
