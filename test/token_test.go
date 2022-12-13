@@ -6,7 +6,7 @@ import (
 )
 
 func TestDemo(t *testing.T) {
-	str := "2^-(-2^2)"
+	str := "2^(-2^2)+{ds}"
 	node, err := formulaengine.GetAstTreeByString(str)
 	if err != nil {
 		t.Error(err)

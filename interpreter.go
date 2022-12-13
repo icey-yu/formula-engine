@@ -69,8 +69,11 @@ func (i *interpreter) visitAstSinNode(node AstNode) (*decimal.Decimal, error) {
 	// 如果该token为变量，通过IdentifierMap获取其值。
 	if tok.Type == TTIdentifier {
 		val, ok := i.IdentifierMap[tok.Value]
+		//if !ok {
+		//	return nil, makeErrWithToken(tok, illegalCalErrMsg, fmt.Sprintf("Cannot found a value by key %s in IdentifierMap, please plus it.", tok.Value))
+		//}
 		if !ok {
-			return nil, makeErrWithToken(tok, illegalCalErrMsg, fmt.Sprintf("Cannot found a value by key %s in IdentifierMap, please plus it.", tok.Value))
+			val = zeroStr
 		}
 		tok.Value = val
 	}

@@ -65,3 +65,7 @@ var (
 		"IF":  3,
 	}
 )
+
+const (
+	zeroStr = "0"
+)
