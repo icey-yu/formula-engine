@@ -24,14 +24,15 @@ func newParser(t []*token) *parser {
 }
 
 // Parse 解析
+// BNF 范式
 // <expr> ::= <and_term> { OR <expr> }
 // <and_term> ::= <not_expr> { AND <and_expr>}
 // <not_term> ::= { NOT } <com_expr>
-// <com_term> ::= <pri_pre> { GT|LT|EQ|NEQ|GTE|LTE <pri_pre> }                     // compare term
+// <com_term> ::= <pri_pre> { GT|LT|EQ|NEQ|GTE|LTE <pri_pre> }                 // compare term
 // <pri_ope> ::= <pri_ope> { +|- <sec_ope> }                                   // Primary operation
 // <sec_ope> ::= <sec_ope> { *|/ <ter_ope> }                                   // Secondary operation
 // <ter_ope> ::= <factor> { ^ <ter_ope> }                                      // Tertiary operation
-// <factor> ::= NUM| FUNCTION LPAREN [ expr { COMMA expr }] RPAREN| IDENTIFIER| { PLUS | MINUS } factor| LPAREN expr RPAREN
+// <factor> ::= NUM| FUNCTION LPAREN [ expr { COMMA expr }] RPAREN| IDENTIFIER| { PLUS | MINUS } <factor>| LPAREN <expr> RPAREN
 func (p *parser) Parse() (AstNode, error) {
 	res, err := p.expr()
 	if err != nil {

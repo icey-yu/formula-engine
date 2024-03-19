@@ -81,8 +81,8 @@
 <factor> ::= NUM|
 			FUNCTION LPAREN [ expr { COMMA expr }] RPAREN|
 			IDENTIFIER|
-			{ PLUS | MINUS } factor|
-			LPAREN expr RPAREN
+			{ PLUS | MINUS } <factor>|
+			LPAREN <expr> RPAREN
 ```
 
 ## **使用**
